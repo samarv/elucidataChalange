@@ -16,3 +16,7 @@ Github workflow
 
 - GitHub Flow - https://guides.github.com/introduction/flow/
 
+
+Kanban/ Trello Board
+
+- https://trello.com/b/6T0MFFnm/elucidata-chalange
