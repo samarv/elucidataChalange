@@ -6,7 +6,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        test
+        <div className="Container">
+          Elucidata challange
+          <button>
+            Upload JSON File
+          </button>
+        </div>
       </div>
     );
   }
