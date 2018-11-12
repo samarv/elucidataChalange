@@ -71,7 +71,7 @@ class App extends Component {
               />
 
             <span>
-              Click Here
+              Upload JSON
             </span>
 
           </label>
