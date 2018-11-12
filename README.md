@@ -12,5 +12,7 @@ Tech stack
 
 - ReactJS
 
+Github workflow 
 
+- GitHub Flow - https://guides.github.com/introduction/flow/
 
