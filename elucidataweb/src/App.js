@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FileInput from 'react-simple-file-input'
-
+import Plot from 'react-plotly.js';
 
 import './App.css';
 
@@ -45,9 +45,8 @@ class App extends Component {
   }
 
   handleFileSelected = (event, file) => {
-    this.setState({file: file, fileContents: event.target.result});
-    console.log(file)
-    console.log(event.target.result)
+    this.setState({file: file, fileContents: JSON.parse(event.target.result)});
+    console.log(JSON.parse(event.target.result))
   }
   render() {
     return (
@@ -75,6 +74,26 @@ class App extends Component {
             </span>
 
           </label>
+        </div>
+        <div>
+          {
+            this.state.fileContents 
+              ? 
+                <Plot
+                data={[
+                  {
+                    x: this.state.fileContents.groups[0].peaks[0].eic.rt,
+                    y: this.state.fileContents.groups[0].peaks[0].eic.intensity,
+                    type: 'scatter',
+                    mode: 'lines+points',
+                    marker: {color: 'red'},
+                  }
+                ]}
+                layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
+              />
+              : 
+                console.log("false")}
+           
         </div>
       </div>
     );
