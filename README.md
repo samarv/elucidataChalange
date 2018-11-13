@@ -1,7 +1,10 @@
 # elucidataChalange
 
+Deployed at 
 
-Task is to Make a small web app that - 
+- https://confident-villani-bfbcaf.netlify.com/
+
+Task was to Make a small web app that - 
 
 1. Contains a file uploader.
 
@@ -10,7 +13,9 @@ Task is to Make a small web app that -
 
 Tech stack
 
-- ReactJS
+- Frontend - ReactJS
+- Graphing Library - plot.ly
+- Deployment - Netlify
 
 Github workflow 
 
