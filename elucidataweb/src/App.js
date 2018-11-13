@@ -79,74 +79,89 @@ class App extends Component {
           {
             this.state.fileContents 
               ? 
+                
                 <Plot
-                data={[
-                  {
-                    x: this.state.fileContents.groups[0].peaks[0].eic.rt,
-                    y: this.state.fileContents.groups[0].peaks[0].eic.intensity,
-                    type: 'scatter',
-                    fill: 'tonexty',
-                    mode: 'none',
-                    name: 'sample1'
-                  },
-                  {
-                    type: 'scatter', 
-                    fill: 'tonexty',
-                    x: this.state.fileContents.groups[0].peaks[1].eic.rt, 
-                    y: this.state.fileContents.groups[0].peaks[1].eic.intensity,
-                    mode: 'none',
-                    name: 'sample2'
-                  },
-                  {
-                    type: 'scatter', 
-                    fill: 'tonexty',
-                    x: this.state.fileContents.groups[0].peaks[2].eic.rt, 
-                    y: this.state.fileContents.groups[0].peaks[2].eic.intensity,
-                    mode: 'none',
-                    name: 'sample2'
+                  data={
+                    this.state.fileContents.groups[0].peaks.map(item => {
+                      return {
+                        x: item.eic.rt,
+                        y: item.eic.intensity,
+                        type: 'scatter',
+                        fill: 'tonexty',
+                        mode: 'none',
+                        name: item.sampleName
+                      }
+                    })
+                    
+                  //   [
+                  //   {
+                  //     x: this.state.fileContents.groups[0].peaks[0].eic.rt,
+                  //     y: this.state.fileContents.groups[0].peaks[0].eic.intensity,
+                  //     type: 'scatter',
+                  //     fill: 'tonexty',
+                  //     mode: 'none',
+                  //     name: 'sample1'
+                  //   },
+                  //   {
+                  //     type: 'scatter', 
+                  //     fill: 'tonexty',
+                  //     x: this.state.fileContents.groups[0].peaks[1].eic.rt, 
+                  //     y: this.state.fileContents.groups[0].peaks[1].eic.intensity,
+                  //     mode: 'none',
+                  //     name: 'sample2'
+                  //   },
+                  //   {
+                  //     type: 'scatter', 
+                  //     fill: 'tonexty',
+                  //     x: this.state.fileContents.groups[0].peaks[2].eic.rt, 
+                  //     y: this.state.fileContents.groups[0].peaks[2].eic.intensity,
+                  //     mode: 'none',
+                  //     name: 'sample2'
+                  //   }
+                  // ]
                   }
-                ]}
-                layout={ 
-                  {
-                    width: 500, 
-                    height: 500, 
-                    title: 'Elucidata',
-                    xaxis: {
-                      title: 'Retention Times(in minutes)',
-                      titlefont: {
-                        family: 'Arial, sans-serif',
-                        size: 18,
-                        color: 'lightgrey'
+                  layout={ 
+                    {
+                      width: 700, 
+                      height: 500, 
+                      title: 'Elucidata',
+                      xaxis: {
+                        title: 'Retention Times(in minutes)',
+                        titlefont: {
+                          family: 'Arial, sans-serif',
+                          size: 18,
+                          color: 'lightgrey'
+                        },
+                        showticklabels: true,
+                        tickangle: 'auto',
+                        tickfont: {
+                          family: 'Old Standard TT, serif',
+                          size: 14,
+                          color: 'black'
+                        },
+                        exponentformat: 'e',
+                        showexponent: 'all'
                       },
-                      showticklabels: true,
-                      tickangle: 'auto',
-                      tickfont: {
-                        family: 'Old Standard TT, serif',
-                        size: 14,
-                        color: 'black'
-                      },
-                      exponentformat: 'e',
-                      showexponent: 'all'
-                    },
-                    yaxis: {
-                      title: 'Intensity',
-                      titlefont: {
-                        family: 'Arial, sans-serif',
-                        size: 18,
-                        color: 'lightgrey'
-                      },
-                      showticklabels: true,
-                      tickangle: 45,
-                      tickfont: {
-                        family: 'Old Standard TT, serif',
-                        size: 14,
-                        color: 'black'
-                      },
-                      exponentformat: 'e',
-                      showexponent: 'all'
-                    }
-                  } }
-              />
+                      yaxis: {
+                        title: 'Intensity',
+                        titlefont: {
+                          family: 'Arial, sans-serif',
+                          size: 18,
+                          color: 'lightgrey'
+                        },
+                        showticklabels: true,
+                        tickangle: 45,
+                        tickfont: {
+                          family: 'Old Standard TT, serif',
+                          size: 14,
+                          color: 'black'
+                        },
+                        exponentformat: 'e',
+                        showexponent: 'all'
+                      }
+                    } 
+                  }
+                />
               : 
                 console.log("false")}
            
