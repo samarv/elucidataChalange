@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FileInput from 'react-simple-file-input'
 import Plot from 'react-plotly.js';
-
+import report from './report.svg';
 import './App.css';
 
 var allowedFileTypes = ["application/json"];
@@ -51,12 +51,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="Header">
+          <h1>
+            Elucidata
+          </h1>
+        </div>
         <div className="Container">
-
+          <div className="body" >
+            <img src= {report} alt="report" />
+              <p>
+                  Glance at all your results. 
+                <br />
+                  Upload JSON file to plot 
+                <br />
+                  an interactive graph
+              </p>
+          </div>
+          
           <label >
             <FileInput
               readAs='binary'
-              style={ { display: 'none' } }
+              style={ { display: 'flex'} }
 
               onLoadStart={this.showProgressBar}
               onLoad={this.handleFileSelected}
@@ -70,7 +85,7 @@ class App extends Component {
               />
 
             <span>
-              Upload JSON
+              
             </span>
 
           </label>
@@ -92,33 +107,6 @@ class App extends Component {
                         name: item.sampleName
                       }
                     })
-                    
-                  //   [
-                  //   {
-                  //     x: this.state.fileContents.groups[0].peaks[0].eic.rt,
-                  //     y: this.state.fileContents.groups[0].peaks[0].eic.intensity,
-                  //     type: 'scatter',
-                  //     fill: 'tonexty',
-                  //     mode: 'none',
-                  //     name: 'sample1'
-                  //   },
-                  //   {
-                  //     type: 'scatter', 
-                  //     fill: 'tonexty',
-                  //     x: this.state.fileContents.groups[0].peaks[1].eic.rt, 
-                  //     y: this.state.fileContents.groups[0].peaks[1].eic.intensity,
-                  //     mode: 'none',
-                  //     name: 'sample2'
-                  //   },
-                  //   {
-                  //     type: 'scatter', 
-                  //     fill: 'tonexty',
-                  //     x: this.state.fileContents.groups[0].peaks[2].eic.rt, 
-                  //     y: this.state.fileContents.groups[0].peaks[2].eic.intensity,
-                  //     mode: 'none',
-                  //     name: 'sample2'
-                  //   }
-                  // ]
                   }
                   layout={ 
                     {
