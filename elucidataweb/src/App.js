@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FileInput from 'react-simple-file-input'
-
+import Plot from 'react-plotly.js';
 
 import './App.css';
 
@@ -45,9 +45,8 @@ class App extends Component {
   }
 
   handleFileSelected = (event, file) => {
-    this.setState({file: file, fileContents: event.target.result});
-    console.log(file)
-    console.log(event.target.result)
+    this.setState({file: file, fileContents: JSON.parse(event.target.result)});
+    console.log(JSON.parse(event.target.result))
   }
   render() {
     return (
@@ -71,10 +70,101 @@ class App extends Component {
               />
 
             <span>
-              Click Here
+              Upload JSON
             </span>
 
           </label>
+        </div>
+        <div>
+          {
+            this.state.fileContents 
+              ? 
+                
+                <Plot
+                  data={
+                    this.state.fileContents.groups[0].peaks.map(item => {
+                      return {
+                        x: item.eic.rt,
+                        y: item.eic.intensity,
+                        type: 'scatter',
+                        fill: 'tonexty',
+                        mode: 'none',
+                        name: item.sampleName
+                      }
+                    })
+                    
+                  //   [
+                  //   {
+                  //     x: this.state.fileContents.groups[0].peaks[0].eic.rt,
+                  //     y: this.state.fileContents.groups[0].peaks[0].eic.intensity,
+                  //     type: 'scatter',
+                  //     fill: 'tonexty',
+                  //     mode: 'none',
+                  //     name: 'sample1'
+                  //   },
+                  //   {
+                  //     type: 'scatter', 
+                  //     fill: 'tonexty',
+                  //     x: this.state.fileContents.groups[0].peaks[1].eic.rt, 
+                  //     y: this.state.fileContents.groups[0].peaks[1].eic.intensity,
+                  //     mode: 'none',
+                  //     name: 'sample2'
+                  //   },
+                  //   {
+                  //     type: 'scatter', 
+                  //     fill: 'tonexty',
+                  //     x: this.state.fileContents.groups[0].peaks[2].eic.rt, 
+                  //     y: this.state.fileContents.groups[0].peaks[2].eic.intensity,
+                  //     mode: 'none',
+                  //     name: 'sample2'
+                  //   }
+                  // ]
+                  }
+                  layout={ 
+                    {
+                      width: 700, 
+                      height: 500, 
+                      title: 'Elucidata',
+                      xaxis: {
+                        title: 'Retention Times(in minutes)',
+                        titlefont: {
+                          family: 'Arial, sans-serif',
+                          size: 18,
+                          color: 'lightgrey'
+                        },
+                        showticklabels: true,
+                        tickangle: 'auto',
+                        tickfont: {
+                          family: 'Old Standard TT, serif',
+                          size: 14,
+                          color: 'black'
+                        },
+                        exponentformat: 'e',
+                        showexponent: 'all'
+                      },
+                      yaxis: {
+                        title: 'Intensity',
+                        titlefont: {
+                          family: 'Arial, sans-serif',
+                          size: 18,
+                          color: 'lightgrey'
+                        },
+                        showticklabels: true,
+                        tickangle: 45,
+                        tickfont: {
+                          family: 'Old Standard TT, serif',
+                          size: 14,
+                          color: 'black'
+                        },
+                        exponentformat: 'e',
+                        showexponent: 'all'
+                      }
+                    } 
+                  }
+                />
+              : 
+                console.log("false")}
+           
         </div>
       </div>
     );
